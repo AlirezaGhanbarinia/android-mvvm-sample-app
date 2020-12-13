@@ -16,9 +16,6 @@ import com.aliasadi.mvvm.databinding.ActivityDetailsBinding;
 import com.aliasadi.mvvm.ui.base.BaseActivity;
 import com.bumptech.glide.Glide;
 
-/**
- * Created by Ali Asadi on 12/03/2018.
- */
 public class DetailsActivity extends BaseActivity<DetailsViewModel> {
 
     private static final String EXTRA_MOVIE = "EXTRA_MOVIE";

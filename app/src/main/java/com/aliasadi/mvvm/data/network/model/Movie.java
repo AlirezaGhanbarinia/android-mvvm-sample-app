@@ -6,9 +6,6 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Ali Asadi on 10/03/2018.
- */
 public class Movie implements Parcelable{
 
     @Expose

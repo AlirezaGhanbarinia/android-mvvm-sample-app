@@ -6,14 +6,10 @@ import androidx.lifecycle.ViewModel;
 import com.aliasadi.mvvm.data.network.model.Movie;
 import com.aliasadi.mvvm.ui.base.BaseViewModel;
 
-
-/**
- * Created by Ali Asadi on 12/03/2018.
- */
 class DetailsViewModel extends BaseViewModel {
 
-    private MutableLiveData<Movie> movieLiveData = new MutableLiveData<>();
-    private Movie movie;
+    private final MutableLiveData<Movie> movieLiveData = new MutableLiveData<>();
+    private final Movie movie;
 
     DetailsViewModel(Movie movie) {
         this.movie = movie;

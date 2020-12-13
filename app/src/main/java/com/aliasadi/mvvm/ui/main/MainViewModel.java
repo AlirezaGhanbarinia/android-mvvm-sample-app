@@ -17,9 +17,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by Ali Asadi on 18/12/2018.
- */
 public class MainViewModel extends BaseViewModel {
 
     private MutableLiveData<List<Movie>> movies;

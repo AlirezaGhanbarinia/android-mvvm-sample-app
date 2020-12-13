@@ -6,10 +6,6 @@ import com.aliasadi.mvvm.data.network.services.MovieService;
 import com.preference.PowerPreference;
 import com.preference.Preference;
 
-/**
- * Created by Ali Asadi on 26/03/2018.
- */
-
 public class DataManager {
 
     private static DataManager sInstance;
@@ -29,7 +25,7 @@ public class DataManager {
         return PowerPreference.defult();
     }
 
-    public LogDatabase getLogDatabse() {
+    public LogDatabase getLogDatabase() {
         return LogDatabase.getInstance(App.getInstance());
     }
 

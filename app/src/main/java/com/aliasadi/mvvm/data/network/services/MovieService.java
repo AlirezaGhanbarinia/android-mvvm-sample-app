@@ -7,14 +7,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
-/**
- * Created by Ali Asadi on 26/03/2018.
- */
 public class MovieService {
 
     private static final String URL = "http://demo6483760.mockable.io/";
 
-    private MovieApi mMovieApi;
+    private final MovieApi mMovieApi;
 
     private static MovieService instance;
 

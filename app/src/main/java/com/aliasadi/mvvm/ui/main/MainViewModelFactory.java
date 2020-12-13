@@ -6,9 +6,6 @@ import androidx.annotation.NonNull;
 
 import com.aliasadi.mvvm.data.network.services.MovieService;
 
-/**
- * Created by Ali Asadi on 19/12/2018.
- */
 public class MainViewModelFactory implements ViewModelProvider.Factory {
 
     private final MovieService movieService;

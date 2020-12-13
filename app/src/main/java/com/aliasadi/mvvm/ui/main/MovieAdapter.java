@@ -14,9 +14,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Ali Asadi on 24/03/2018.
- */
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
     public interface MovieListener {
@@ -24,7 +21,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     }
 
     private List<Movie> items;
-    private MovieListener listener;
+    private final MovieListener listener;
 
     public MovieAdapter(MovieListener listener) {
         this.listener = listener;

@@ -4,10 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-/**
- * Created by Ali Asadi on 07/03/2018.
- */
-
 @Entity
 public class LogClass {
 

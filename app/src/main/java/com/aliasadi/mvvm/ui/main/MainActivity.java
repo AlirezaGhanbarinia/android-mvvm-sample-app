@@ -18,14 +18,9 @@ import com.aliasadi.mvvm.ui.details.DetailsActivity;
 
 import java.util.List;
 
-/**
- * Created by Ali Asadi on 12/03/2018.
- */
-
 public class MainActivity extends BaseActivity<MainViewModel> implements MovieAdapter.MovieListener {
 
     private ActivityMainBinding binding;
-
     private MovieAdapter movieAdapter;
 
     @Override
@@ -39,26 +34,11 @@ public class MainActivity extends BaseActivity<MainViewModel> implements MovieAd
         viewModel.getLoadingStatus().observe(this, new LoadingObserver());
         viewModel.getMovies().observe(this, new MovieObserver());
 
-        binding.network.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onNetworkButtonClick();
-            }
-        });
+        binding.network.setOnClickListener((View view) -> viewModel.loadMoviesNetwork());
 
-        binding.local.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onLocalButtonClick();
-            }
-        });
+        binding.local.setOnClickListener((View view) -> viewModel.loadMovieLocal());
 
-        binding.empty.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onEmptyButtonClick();
-            }
-        });
+        binding.empty.setOnClickListener((View view) -> viewModel.onEmptyClicked());
     }
 
     @NonNull
@@ -66,18 +46,6 @@ public class MainActivity extends BaseActivity<MainViewModel> implements MovieAd
     protected MainViewModel createViewModel() {
         MainViewModelFactory factory = new MainViewModelFactory(DataManager.getInstance().getMovieService());
         return new ViewModelProvider(this, factory).get(MainViewModel.class);
-    }
-
-    void onNetworkButtonClick() {
-        viewModel.loadMoviesNetwork();
-    }
-
-    void onLocalButtonClick() {
-        viewModel.loadMovieLocal();
-    }
-
-    void onEmptyButtonClick() {
-        viewModel.onEmptyClicked();
     }
 
     @Override
