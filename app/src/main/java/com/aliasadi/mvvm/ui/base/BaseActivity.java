@@ -1,8 +1,8 @@
 package com.aliasadi.mvvm.ui.base;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by Ali Asadi on 07/01/2019.

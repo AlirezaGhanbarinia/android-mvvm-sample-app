@@ -1,8 +1,8 @@
 package com.aliasadi.mvvm.ui.main;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.annotation.NonNull;
 
 import com.aliasadi.mvvm.data.network.model.Movie;
 import com.aliasadi.mvvm.data.network.model.MovieResponse;

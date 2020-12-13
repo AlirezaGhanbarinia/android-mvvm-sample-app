@@ -1,28 +1,22 @@
 package com.aliasadi.mvvm.ui.main;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.aliasadi.mvvm.R;
 import com.aliasadi.mvvm.data.DataManager;
 import com.aliasadi.mvvm.data.network.model.Movie;
+import com.aliasadi.mvvm.databinding.ActivityMainBinding;
 import com.aliasadi.mvvm.ui.base.BaseActivity;
 import com.aliasadi.mvvm.ui.details.DetailsActivity;
 
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by Ali Asadi on 12/03/2018.
@@ -30,43 +24,58 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity<MainViewModel> implements MovieAdapter.MovieListener {
 
-    @BindView(R.id.recycler_view) RecyclerView recyclerView;
-    @BindView(R.id.progress_bar) ProgressBar progressBar;
-    @BindView(R.id.empty_view) TextView emptyView;
+    private ActivityMainBinding binding;
 
     private MovieAdapter movieAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         movieAdapter = new MovieAdapter(this);
-        recyclerView.setAdapter(movieAdapter);
+        binding.recyclerView.setAdapter(movieAdapter);
 
         viewModel.getLoadingStatus().observe(this, new LoadingObserver());
         viewModel.getMovies().observe(this, new MovieObserver());
+
+        binding.network.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onNetworkButtonClick();
+            }
+        });
+
+        binding.local.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onLocalButtonClick();
+            }
+        });
+
+        binding.empty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEmptyButtonClick();
+            }
+        });
     }
 
     @NonNull
     @Override
     protected MainViewModel createViewModel() {
         MainViewModelFactory factory = new MainViewModelFactory(DataManager.getInstance().getMovieService());
-        return ViewModelProviders.of(this, factory).get(MainViewModel.class);
+        return new ViewModelProvider(this, factory).get(MainViewModel.class);
     }
 
-    @OnClick(R.id.network)
     void onNetworkButtonClick() {
         viewModel.loadMoviesNetwork();
     }
 
-    @OnClick(R.id.local)
     void onLocalButtonClick() {
         viewModel.loadMovieLocal();
     }
 
-    @OnClick(R.id.empty)
     void onEmptyButtonClick() {
         viewModel.onEmptyClicked();
     }
@@ -84,9 +93,9 @@ public class MainActivity extends BaseActivity<MainViewModel> implements MovieAd
             if (isLoading == null) return;
 
             if (isLoading) {
-                progressBar.setVisibility(View.VISIBLE);
+                binding.progressBar.setVisibility(View.VISIBLE);
             } else {
-                progressBar.setVisibility(View.GONE);
+                binding.progressBar.setVisibility(View.GONE);
             }
         }
     }
@@ -99,9 +108,9 @@ public class MainActivity extends BaseActivity<MainViewModel> implements MovieAd
             movieAdapter.setItems(movies);
 
             if (movies.isEmpty()) {
-                emptyView.setVisibility(View.VISIBLE);
+                binding.emptyView.setVisibility(View.VISIBLE);
             } else {
-                emptyView.setVisibility(View.GONE);
+                binding.emptyView.setVisibility(View.GONE);
             }
         }
     }

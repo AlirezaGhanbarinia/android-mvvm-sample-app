@@ -1,6 +1,6 @@
 package com.aliasadi.mvvm.ui.base;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 
 /**
  *  Created by Ali Asadi on 07/01/2019.

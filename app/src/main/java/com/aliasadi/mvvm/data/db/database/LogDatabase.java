@@ -1,10 +1,10 @@
 package com.aliasadi.mvvm.data.db.database;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 import android.content.Context;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.WorkerThread;
 import com.aliasadi.mvvm.data.db.dao.LogDAO;
 import com.aliasadi.mvvm.data.db.entity.LogClass;
 
