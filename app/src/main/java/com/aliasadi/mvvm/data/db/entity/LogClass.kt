@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 class LogClass {
+
     @PrimaryKey(autoGenerate = true)
     var _id = 0
 
@@ -17,4 +18,5 @@ class LogClass {
 
     @ColumnInfo(name = "Date")
     var date: String? = null
+
 }

@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
-class MovieService private constructor() {
+class MovieService {
     val movieApi: MovieApi
 
     interface MovieApi {
@@ -18,11 +18,16 @@ class MovieService private constructor() {
 
         private const val URL = "http://demo6483760.mockable.io/"
 
+        @Volatile
         private var instance: MovieService? = null
 
         fun getInstance(): MovieService {
             if (instance == null) {
-                instance = MovieService()
+                synchronized(MovieService::class.java) {
+                    if (instance == null) {
+                        instance = MovieService()
+                    }
+                }
             }
             return instance!!
         }

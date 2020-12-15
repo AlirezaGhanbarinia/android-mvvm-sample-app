@@ -6,6 +6,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 class Movie : Parcelable {
+
     @Expose
     @SerializedName("description")
     var description: String?

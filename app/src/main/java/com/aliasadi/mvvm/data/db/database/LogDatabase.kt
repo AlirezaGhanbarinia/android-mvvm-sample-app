@@ -10,25 +10,35 @@ import com.aliasadi.mvvm.data.db.entity.LogClass
 
 @Database(entities = [LogClass::class], version = 2, exportSchema = false)
 abstract class LogDatabase : RoomDatabase() {
+
     @WorkerThread
     abstract fun logDao(): LogDAO
 
     companion object {
+
+        @Volatile
         private var instance: LogDatabase? = null
-        private fun initialize(context: Context): LogDatabase? {
+
+        private fun initialize(context: Context): LogDatabase {
             instance = Room.databaseBuilder(context.applicationContext, LogDatabase::class.java, "log-database").fallbackToDestructiveMigration().build()
-            return instance
+            return instance!!
         }
 
         fun getInstance(context: Context): LogDatabase {
             if (instance == null) {
-                initialize(context)
+                synchronized(LogDatabase::class.java) {
+                    if (instance == null) {
+                        initialize(context)
+                    }
+                }
             }
             return instance!!
         }
 
         fun destroyInstance() {
-            instance = null
+            synchronized(LogDatabase::class.java) {
+                instance = null
+            }
         }
     }
 
