@@ -14,37 +14,35 @@ abstract class LogDatabase : RoomDatabase() {
     abstract fun logDao(): LogDAO
 
     companion object {
-        private var sInstance: LogDatabase? = null
+        private var instance: LogDatabase? = null
         private fun initialize(context: Context): LogDatabase? {
-            sInstance = Room.databaseBuilder(context.applicationContext, LogDatabase::class.java, "log-database").fallbackToDestructiveMigration().build()
-            return sInstance
+            instance = Room.databaseBuilder(context.applicationContext, LogDatabase::class.java, "log-database").fallbackToDestructiveMigration().build()
+            return instance
         }
 
-        @JvmStatic
-        fun getInstance(context: Context): LogDatabase? {
-            return if (sInstance == null) {
+        fun getInstance(context: Context): LogDatabase {
+            if (instance == null) {
                 initialize(context)
-            } else {
-                sInstance
             }
+            return instance!!
         }
 
         fun destroyInstance() {
-            sInstance = null
+            instance = null
         }
+    }
 
-        fun addLog(db: LogDatabase, log: LogClass) {
-            val thread: Thread = object : Thread() {
-                override fun run() {
-                    super.run()
-                    db.logDao().insertAll(log)
-                }
+    fun addLog(db: LogDatabase, log: LogClass) {
+        val thread: Thread = object : Thread() {
+            override fun run() {
+                super.run()
+                db.logDao().insertAll(log)
             }
-            thread.start()
         }
+        thread.start()
+    }
 
-        fun dropTable(db: LogDatabase) {
-            db.logDao().dropTable()
-        }
+    fun dropTable(db: LogDatabase) {
+        db.logDao().dropTable()
     }
 }

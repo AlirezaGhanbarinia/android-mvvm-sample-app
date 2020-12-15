@@ -11,13 +11,13 @@ class MovieService private constructor() {
 
     interface MovieApi {
         @get:GET("movies/")
-        val allMovie: Call<MovieResponse?>?
+        val allMovie: Call<MovieResponse?>
     }
 
     companion object {
 
         private const val URL = "http://demo6483760.mockable.io/"
-        
+
         private var instance: MovieService? = null
 
         fun getInstance(): MovieService {

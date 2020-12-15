@@ -56,15 +56,15 @@ class MovieAdapter(private val listener: MovieListener) : RecyclerView.Adapter<M
             setDescription(movie.description)
         }
 
-        private fun setTitle(title: String) {
+        private fun setTitle(title: String?) {
             this.title.text = title
         }
 
-        private fun setImage(imageUrl: String) {
+        private fun setImage(imageUrl: String?) {
             Glide.with(itemView.context).load(imageUrl).into(image)
         }
 
-        private fun setDescription(description: String) {
+        private fun setDescription(description: String?) {
             desc.text = description
         }
 

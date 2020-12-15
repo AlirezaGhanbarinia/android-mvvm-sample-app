@@ -44,7 +44,7 @@ class MainViewModel(private val movieService: MovieService) : BaseViewModel() {
         loadingStatus.postValue(loading)
     }
 
-    private fun setMovies(movies: List<Movie>) {
+    private fun setMovies(movies: List<Movie>?) {
         setIsLoading(false)
         this.movies.postValue(movies)
     }

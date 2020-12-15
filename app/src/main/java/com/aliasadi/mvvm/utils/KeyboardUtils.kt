@@ -36,7 +36,7 @@ object KeyboardUtils {
         inputManager.showSoftInput(view, 0)
     }
 
-    fun toggleKeyboradState(context: Context, edit: EditText) {
+    fun toggleKeyboardState(context: Context, edit: EditText) {
         edit.isFocusable = true
         edit.isFocusableInTouchMode = true
         edit.requestFocus()
