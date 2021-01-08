@@ -18,18 +18,8 @@ class MovieService {
 
         private const val URL = "http://demo6483760.mockable.io/"
 
-        @Volatile
-        private var instance: MovieService? = null
-
-        fun getInstance(): MovieService {
-            if (instance == null) {
-                synchronized(MovieService::class.java) {
-                    if (instance == null) {
-                        instance = MovieService()
-                    }
-                }
-            }
-            return instance!!
+        val instance: MovieService by lazy {
+            MovieService()
         }
     }
 

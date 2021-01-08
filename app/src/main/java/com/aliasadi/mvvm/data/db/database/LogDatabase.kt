@@ -1,10 +1,10 @@
 package com.aliasadi.mvvm.data.db.database
 
-import android.content.Context
 import androidx.annotation.WorkerThread
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.aliasadi.mvvm.App
 import com.aliasadi.mvvm.data.db.dao.LogDAO
 import com.aliasadi.mvvm.data.db.entity.LogClass
 
@@ -15,30 +15,10 @@ abstract class LogDatabase : RoomDatabase() {
     abstract fun logDao(): LogDAO
 
     companion object {
-
-        @Volatile
-        private var instance: LogDatabase? = null
-
-        private fun initialize(context: Context): LogDatabase {
-            instance = Room.databaseBuilder(context.applicationContext, LogDatabase::class.java, "log-database").fallbackToDestructiveMigration().build()
-            return instance!!
-        }
-
-        fun getInstance(context: Context): LogDatabase {
-            if (instance == null) {
-                synchronized(LogDatabase::class.java) {
-                    if (instance == null) {
-                        initialize(context)
-                    }
-                }
-            }
-            return instance!!
-        }
-
-        fun destroyInstance() {
-            synchronized(LogDatabase::class.java) {
-                instance = null
-            }
+        val instance: LogDatabase by lazy {
+            Room.databaseBuilder(App.instance.applicationContext, LogDatabase::class.java, "log-database")
+                    .fallbackToDestructiveMigration()
+                    .build()
         }
     }
 

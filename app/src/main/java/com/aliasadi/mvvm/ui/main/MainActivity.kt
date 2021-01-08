@@ -32,7 +32,7 @@ import kotlinx.android.synthetic.main.activity_main.*
     }
 
     override fun createViewModel(): MainViewModel {
-        val factory = MainViewModelFactory(DataManager.getInstance().movieService())
+        val factory = MainViewModelFactory(DataManager.instance.movieService())
         return ViewModelProvider(this, factory).get(MainViewModel::class.java)
     }
 
