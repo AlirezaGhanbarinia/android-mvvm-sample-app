@@ -1,3 +1,3 @@
-package com.aliasadi.mvvm.utils
+package com.aliasadi.mvvm.utilities
 
 class ToolsUtils private constructor()

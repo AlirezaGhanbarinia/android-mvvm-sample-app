@@ -1,4 +1,4 @@
-package com.aliasadi.mvvm.utils
+package com.aliasadi.mvvm.utilities
 
 import android.content.Context
 import android.net.ConnectivityManager
