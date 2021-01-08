@@ -31,8 +31,7 @@ class MainViewModel(private val movieService: MovieService) : BaseViewModel() {
 
     private fun createLocalMovieList(): List<Movie> {
         val name = "Breaking Bad"
-        val image = "https://coderwall-assets-0.s3.amazonaws.com/" +
-                "uploads/picture/file/622/breaking_bad_css3_svg_raw.png"
+        val image = "https://coderwall-assets-0.s3.amazonaws.com/uploads/picture/file/622/breaking_bad_css3_svg_raw.png"
         val movies: MutableList<Movie> = ArrayList()
         movies.add(Movie(name, image, name))
         movies.add(Movie(name, image, name))
