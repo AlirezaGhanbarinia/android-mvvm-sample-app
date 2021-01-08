@@ -13,19 +13,8 @@ class DataManager {
     fun movieService(): MovieService = MovieService.getInstance()
 
     companion object {
-
-        @Volatile
-        private var instance: DataManager? = null
-
-        fun getInstance(): DataManager {
-            if (instance == null) {
-                synchronized(DataManager::class.java) {
-                    if (instance == null) {
-                        instance = DataManager()
-                    }
-                }
-            }
-            return instance!!
+        private val instance: DataManager by lazy {
+            DataManager()
         }
     }
 }
