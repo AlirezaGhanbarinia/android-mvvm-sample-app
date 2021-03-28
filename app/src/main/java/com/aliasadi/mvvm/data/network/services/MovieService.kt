@@ -7,7 +7,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 class MovieService {
-    val movieApi: MovieApi
+
+    private val url = "http://demo6483760.mockable.io/"
+
+    val movieApi: MovieApi by lazy {
+        Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(url)
+                .build()
+                .create(MovieApi::class.java)
+    }
 
     interface MovieApi {
         @get:GET("movies/")
@@ -15,16 +24,8 @@ class MovieService {
     }
 
     companion object {
-
-        private const val URL = "http://demo6483760.mockable.io/"
-
         val instance: MovieService by lazy {
             MovieService()
         }
-    }
-
-    init {
-        val mRetrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(URL).build()
-        movieApi = mRetrofit.create(MovieApi::class.java)
     }
 }
